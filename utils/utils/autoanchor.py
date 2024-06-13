@@ -24,7 +24,7 @@ def check_anchor_order(m):
         m.anchors[:] = m.anchors.flip(0)
 
 
-@TryExcept(f"{PREFIX}ERROR")
+#@TryExcept(f"{PREFIX}ERROR")
 def check_anchors(dataset, model, thr=4.0, imgsz=640):
     """Evaluates anchor fit to dataset and adjusts if necessary, supporting customizable threshold and image size."""
     m = model.module.model[-1] if hasattr(model, "module") else model.model[-1]  # Detect()
@@ -62,8 +62,8 @@ def check_anchors(dataset, model, thr=4.0, imgsz=640):
         LOGGER.info(s)
 
 
-def kmean_anchors(dataset="./data/coco128.yaml", n=9, img_size=640, thr=4.0, gen=1000, verbose=True):
-#def kmean_anchors(dataset="./Dev_Folder/AUE8088-PA2/data/nuscenes.yaml", n=3, img_size=416, thr=4.0, gen=1000, verbose=True):
+#def kmean_anchors(dataset="./data/coco128.yaml", n=9, img_size=640, thr=4.0, gen=1000, verbose=True):
+def kmean_anchors(dataset="./Dev_Folder/AUE8088-PA2/data/nuscenes.yaml", n=3, img_size=416, thr=4.0, gen=1000, verbose=True):
     """
     Creates kmeans-evolved anchors from training dataset.
 
