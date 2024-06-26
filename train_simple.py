@@ -133,7 +133,7 @@ def train(hyp, opt, device, callbacks):
     # Config
     init_seeds(opt.seed, deterministic=True)
     data_dict = data_dict or check_dataset(data)  # check if None
-    train_path, val_path = data_dict["train"], data_dict["val"]
+    train_path, val_path, test_path = data_dict["train"], data_dict["val"], data_dict["test"]
     nc = 1 if single_cls else int(data_dict["nc"])  # number of classes
     names = {0: data_dict["names"][0]} if single_cls and len(data_dict["names"]) != 1 else data_dict["names"]  # class names
 
@@ -186,7 +186,7 @@ def train(hyp, opt, device, callbacks):
         gs,
         single_cls,
         hyp=hyp,
-        augment=False,      # TODO: make it work
+        augment=True,      # TODO: make it work
         cache=None if opt.cache == "val" else opt.cache,
         rect=opt.rect,
         rank=-1,
@@ -216,6 +216,23 @@ def train(hyp, opt, device, callbacks):
         workers=workers,
         pad=0.5,
         prefix=colorstr("val: "),
+        rgbt_input=opt.rgbt,
+    )[0]
+    
+    # Testloader
+    test_loader = create_dataloader(
+        test_path,
+        imgsz,
+        batch_size * 2,
+        gs,
+        single_cls,
+        hyp=hyp,
+        cache=None if noval else opt.cache,
+        rect=False,     # Should be set to False for validation, otherwise it will break evaluation pipeline
+        rank=-1,
+        workers=workers,
+        pad=0.5,
+        prefix=colorstr("test: "),
         rgbt_input=opt.rgbt,
     )[0]
 
@@ -393,15 +410,34 @@ def train(hyp, opt, device, callbacks):
                     imgsz=imgsz,
                     model=attempt_load(f, device).half(),
                     iou_thres=0.65 if is_coco else 0.60,  # best pycocotools at iou 0.65
+                    task="val",
                     single_cls=single_cls,
                     dataloader=val_loader,
+                    save_dir=save_dir,
+                    save_json=False,
+                    verbose=True,
+                    plots=False,
+                    callbacks=callbacks,
+                    compute_loss=compute_loss,
+                )  # val best model with plots
+                
+                LOGGER.info(f"\nTesting {f}...")
+                results, _, _ = validate.run(
+                    data_dict,
+                    batch_size=batch_size * 2,
+                    imgsz=imgsz,
+                    model=attempt_load(f, device).half(),
+                    iou_thres=0.65 if is_coco else 0.60,  # best pycocotools at iou 0.65
+                    task="test",
+                    single_cls=single_cls,
+                    dataloader=test_loader,
                     save_dir=save_dir,
                     save_json=True,
                     verbose=True,
                     plots=False,
                     callbacks=callbacks,
                     compute_loss=compute_loss,
-                )  # val best model with plots
+                )  # test best model with plots
                 if is_coco:
                     callbacks.run("on_fit_epoch_end", list(mloss) + list(results) + lr, epoch, best_fitness, fi)
 
@@ -466,7 +502,7 @@ def parse_opt(known=False):
 def main(opt, callbacks=Callbacks()):
     """Runs training or hyperparameter evolution with specified options and optional callbacks."""
     print_args(vars(opt))
-    check_git_status(repo="ircvlab/aue8088-pa2", branch="main")
+    check_git_status(repo="21-Arbiter/aue8088-pa2", branch="project")
     check_requirements(ROOT / "requirements.txt")
 
     opt.data, opt.cfg, opt.hyp, opt.weights, opt.project = (

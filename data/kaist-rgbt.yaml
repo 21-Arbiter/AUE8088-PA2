@@ -9,10 +9,26 @@
 
 # Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
 path: datasets/kaist-rgbt
-train: # train files info (relative to 'path') 12,538 images
-  - train-all-04.txt      # TODO: Please separate this file into train/val
-val: # val files info (relative to 'path')  12,538 images
-  - test-all-20.txt
+#train: # train files info (relative to 'path') 12,538 images
+#  - train-all-04.txt      # TODO: Please separate this file into train/val
+#val: # val files info (relative to 'path')  12,538 images
+#  - test-all-20.txt
+#test: # test files info (optional)
+#  - test-all-20.txt
+
+train: # train files info (relative to 'path')
+  - false.txt
+  - false1.txt
+  - false2.txt
+  - false3.txt
+  - false4.txt
+  
+val: # val files info (relative to 'path')
+  - true.txt
+  - true1.txt
+  - true2.txt
+  - true3.txt
+  - true4.txt
 test: # test files info (optional)
   - test-all-20.txt
 

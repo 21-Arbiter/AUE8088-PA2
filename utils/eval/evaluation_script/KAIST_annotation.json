@@ -1,0 +1,170 @@
+{
+    "info": {
+        "dataset": "KAIST Multispectral Pedestrian Benchmark",
+        "url": "https://soonminhwang.github.io/rgbt-ped-detection/",
+        "related_project_url": "http://multispectral.kaist.ac.kr",
+        "publish": "CVPR 2015"
+    },
+    "info_improved": {
+        "sanitized_annotation": {
+            "publish": "BMVC 2018",
+            "url": "https://li-chengyang.github.io/home/MSDS-RCNN/",
+            "target": "files in train-all-02.txt (set00-set05)"
+        },
+        "improved_annotation": {
+            "url": "https://github.com/denny1108/multispectral-pedestrian-py-faster-rcnn",
+            "publish": "BMVC 2016",
+            "target": "files in test-all-20.txt (set06-set11)"
+        }
+    },
+    "images": [
+        {
+            "id": 0,
+            "im_name": "set06/V000/I00019",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 1,
+            "im_name": "set06/V000/I00039",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 2,
+            "im_name": "set06/V000/I00059",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 3,
+            "im_name": "set06/V000/I00079",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 4,
+            "im_name": "set06/V000/I00099",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 5,
+            "im_name": "set06/V000/I00119",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 6,
+            "im_name": "set06/V000/I00139",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 7,
+            "im_name": "set06/V000/I00159",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 8,
+            "im_name": "set06/V000/I00179",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 9,
+            "im_name": "set06/V000/I00199",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 10,
+            "im_name": "set06/V000/I00219",
+            "height": 512,
+            "width": 640
+        },
+        {
+            "id": 11,
+            "im_name": "set06/V000/I00239",
+            "height": 512,
+            "width": 640
+        }
+    ],
+    "annotations": [
+        {
+            "id": 0,
+            "image_id": 0,
+            "category_id": 0,
+            "bbox": [
+                505,
+                212,
+                20,
+                50
+            ],
+            "height": 50,
+            "occlusion": 0,
+            "ignore": 0
+        },
+        {
+            "id": 1,
+            "image_id": 1,
+            "category_id": 0,
+            "bbox": [
+                530,
+                226,
+                20,
+                50
+            ],
+            "height": 50,
+            "occlusion": 0,
+            "ignore": 0
+        },
+        {
+            "id": 2,
+            "image_id": 2,
+            "category_id": 0,
+            "bbox": [
+                565,
+                234,
+                25,
+                60
+            ],
+            "height": 60,
+            "occlusion": 0,
+            "ignore": 0
+        },
+        {
+            "id": 3,
+            "image_id": 11,
+            "category_id": 0,
+            "bbox": [
+                433,
+                217,
+                20,
+                35
+            ],
+            "height": 35,
+            "occlusion": 0,
+            "ignore": 0
+        }
+    ],
+    "categories": [
+        {
+            "id": 0,
+            "name": "person"
+        },
+        {
+            "id": 1,
+            "name": "cyclist"
+        },
+        {
+            "id": 2,
+            "name": "people"
+        },
+        {
+            "id": 3,
+            "name": "person?"
+        }
+    ]
+}

@@ -97,10 +97,10 @@
     --batch-size 16 \
     --epochs 20 \
     --data data/kaist-rgbt.yaml \
-    --cfg models/yolov5n_kaist-rgbt.yaml \
-    --weights yolov5n.pt \
+    --cfg models/yolov5s_kaist-rgbt.yaml \
+    --weights yolov5s.pt \
     --workers 16 \
-    --name yolov5n-rgbt \
+    --name yolov5s-rgbt \
     --rgbt \
     --single-cls
   ```
